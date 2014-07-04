@@ -1,0 +1,24 @@
+{
+    "name": "atom/authentication-bundle",
+    "description": "A Symfony 2 bundle for using HMAC validation tokens for use with API.",
+    "type": "symfony-bundle",
+    "keywords": ["authentication", "api"],
+    "homepage": "https://github.com/frodosghost/AtomAuthenticationBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Rickard",
+            "email": "james@frodosghost.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+    },
+    "target-dir": "Atom/AuthenticationBundle",
+    "autoload": {
+        "psr-0": {
+            "Atom\\AuthenticationBundle": ""
+        }
+    },
+    "version": "1.0.0"
+}

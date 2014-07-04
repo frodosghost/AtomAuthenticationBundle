@@ -1,0 +1,27 @@
+Atom\AuthenticationBundle\Entity\AccessKey:
+    type:  entity
+    table: access_key
+
+    repositoryClass: Atom\AuthenticationBundle\Entity\AccessKeyRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        public_key:
+            type: string
+            length: 255
+        private_key:
+            type: string
+            length: 255
+        status:
+            type: integer
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+
+    lifecycleCallbacks:
+        prePersist: [ onCreate ]
+        preUpdate:  [ onUpdate ]

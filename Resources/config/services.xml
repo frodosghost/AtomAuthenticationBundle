@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="atom.authentication.firewall.atom.class">Atom\AuthenticationBundle\Firewall\AtomAuthListener</parameter>
+        <parameter key="atom.authentication.provider.atom.class">Atom\AuthenticationBundle\Provider\AtomAuthProvider</parameter>
+        <parameter key="authentication.header.listener.class">Atom\AuthenticationBundle\EventListener\AuthenticationHeaderListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="authentication.header.listener" class="%authentication.header.listener.class%">
+           <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="255" />
+       </service>
+
+        <service id="atom.authentication.provider" class="%atom.authentication.provider.atom.class%" public="false">
+           <argument /> <!-- User Provider -->
+           <argument>%kernel.cache_dir%/security/nonces</argument>
+           <argument>500</argument>
+       </service>
+
+        <service id="atom.authentication.listener" class="%atom.authentication.firewall.atom.class%" public="false">
+           <argument type="service" id="security.context"/>
+           <argument type="service" id="security.authentication.manager" />
+       </service>
+
+       <service id="atom.authentication.provider_token" class="Atom\AuthenticationBundle\Security\HmacTokenProvider" public="false">
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+    </services>
+
+</container>
