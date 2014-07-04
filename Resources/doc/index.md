@@ -6,8 +6,6 @@ Installation
 
 1. Add this bundle to your project in composer.json:
 
-    Symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
-
     ```json
     {
         "require": {
